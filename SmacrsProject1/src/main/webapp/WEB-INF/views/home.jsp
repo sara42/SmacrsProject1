@@ -8,7 +8,7 @@
 <h1>
 	Please fill your data in order to sign up !  
 </h1>
-<from action="/SmacrsProject1/signup" method="post">
+<from action="/SmacrsProject1" method="post">
 <p >  Name   </p> <input type="text" name="Name" size="50"> 
 <p>  Email  </p> <input type="text" name="Email" size="50"> 
 <p>  Address</p> <input type="text" name="Adress" size="50"> 

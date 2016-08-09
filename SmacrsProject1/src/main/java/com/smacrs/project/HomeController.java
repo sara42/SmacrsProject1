@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.classic.Session;
 import org.slf4j.Logger;
@@ -46,6 +47,7 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
+
 	public void  SignUpData(@RequestParam("Name") String Name,@RequestParam("Email") String Email,
 			@RequestParam("Adress") String Adress,@RequestParam("Age") int Age,@RequestParam("Salary") int Salary) {
 		UserModel user = new UserModel();
@@ -55,11 +57,14 @@ public class HomeController {
 		user.setUserAge(Age);
 		user.setUserSalary(Salary);
 		
+		//here is the transaction !
+		Transaction tx = null;
+
 		SessionFactory sessionFactory=new Configuration() . configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		tx=session.beginTransaction();
 		session.save(user);
-		session.getTransaction().commit();
+		tx.commit();
 		
 		
 		//ModelAndView model=new ModelAndView("signup");
