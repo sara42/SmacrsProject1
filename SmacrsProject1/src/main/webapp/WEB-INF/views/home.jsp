@@ -8,29 +8,17 @@
 <h1>
 	Please fill your data in order to sign up !  
 </h1>
-<from action="/SmacrsProject1" method="post">
-<p >  Name   </p> <input type="text" name="Name" size="50"> 
-<p>  Email  </p> <input type="text" name="Email" size="50"> 
-<p>  Address</p> <input type="text" name="Adress" size="50"> 
-<p>  Age    </p> <input type="text" name="Age" size="50">
-<p>  Salary </p> <input type="text" name="Salary" size="50" > <br>
-<br> <button onclick="Data()">SignUp</button > 
-<p id="print"></p>
+  <form action="#" th:action="@{/signup}" th:object="${user}" method="post">
 
-<script>
-function Data(){
-var Name= document.getElementById("Name").value;
-var Email= document.getElementById("Email").value;
-var Adress= document.getElementById("Adress").value;
-var Age= document.getElementById("Age").value;
-var Salary= document.getElementById("Salary").value;
 
-document.getElementById("print").innerHTML="You are successfully sign up ";
+<p >  Name   </p> <input type="text" th:field="*{UserName}" size="50"> 
+<p>  Email  </p> <input type="text" th:field="*{UserEmail}" size="50"> 
+<p>  Address</p> <input type="text" th:field="*{UserAdress}" size="50"> 
+<p>  Age    </p> <input type="text" th:field="*{UserAge}" size="50">
+<p>  Salary </p> <input type="text" th:field="*{UserSalary}" size="50" > <br>
+<br> <input type="submit" value="SignUp" />
 
-}
-</script>
-
-</from>
+</form>
 
 
 
