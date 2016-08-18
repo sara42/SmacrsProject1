@@ -66,4 +66,10 @@ public class UserModel {
 		UserSalary = userSalary;
 	}
 
+	@Override
+	public String toString() {
+		return "UserModel [UserEmail=" + UserEmail + ", UserID=" + UserID + ", UserName=" + UserName + ", UserAdress="
+				+ UserAdress + ", UserAge=" + UserAge + ", UserSalary=" + UserSalary + "]";
+	}
+
 }

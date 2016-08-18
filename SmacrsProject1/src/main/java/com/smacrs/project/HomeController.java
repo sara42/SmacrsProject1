@@ -32,33 +32,34 @@ public class HomeController {
 		return "home";
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public String greetingSubmit(@ModelAttribute("UserName") String Name, @ModelAttribute("UserEmail") String Email,
+			@ModelAttribute("UserAdress") String Adress, @ModelAttribute("UserAge") int Age,
+			@ModelAttribute("UserSalary") int Salary) {
 
-	@ResponseBody @RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public String greetingSubmit(@RequestBody  String Name
-			,@RequestBody String Email,
-	  @RequestBody  String Adress,@RequestBody  int
-	  Age,@RequestBody  int Salary) {
-		UserModel user=new UserModel();
+		UserModel user = new UserModel();
 		user.setUserEmail(Email);
 		user.setUserAdress(Adress);
 		user.setUserAge(Age);
 		user.setUserName(Name);
 		user.setUserSalary(Salary);
-		//model.addAttribute("user", user);
+
 		System.out.println(user.getUserAdress());
 		System.out.println(user.getUserAge());
 		System.out.println(user.getUserID());
 		System.out.println(user.getUserName());
 		System.out.println(user.getUserSalary());
+
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		org.hibernate.Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(user);
 		session.getTransaction().commit();
 
-		return "signup";
+		return user.toString();
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String signin(Model model) {
 		model.addAttribute("user", new UserModel());
